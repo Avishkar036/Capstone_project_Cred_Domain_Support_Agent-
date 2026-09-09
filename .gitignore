@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 checkpoints.sqlite
 requests.jsonl
+chroma_db/
