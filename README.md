@@ -17,3 +17,7 @@ Queries below 0.3663 return an explicit “I don't know based on the available p
 ## Task 7 agent graph
 
 The LangGraph agent has four nodes: `classify`, `rag`, `status`, and `format`. A conditional edge routes loan record IDs such as `LA-0001` to the status tool and routes policy questions to the RAG tool.
+
+## Task 8 persisted memory
+
+`ConversationMemory` stores ordered user and assistant messages in a JSON file, reloads them for a later turn, and supports an explicit reset that starts a fresh conversation with an empty history.
