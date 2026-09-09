@@ -13,3 +13,7 @@ Queries below 0.3663 return an explicit “I don't know based on the available p
 ## Task 6 escalation score
 
 `check_loan_application_status(record_id)` returns the application status, loan amount, and an escalation score. The formula is `0.6 × fraud_flag + 0.4 × (days_since_created / 30)`, with escalation recommended at scores of 0.65 or higher.
+
+## Task 7 agent graph
+
+The LangGraph agent has four nodes: `classify`, `rag`, `status`, and `format`. A conditional edge routes loan record IDs such as `LA-0001` to the status tool and routes policy questions to the RAG tool.
