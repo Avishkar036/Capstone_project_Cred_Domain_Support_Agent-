@@ -41,3 +41,7 @@ The API middleware appends one JSON-Lines entry per request with a trace ID, sta
 ## Task 13 RAG-triad evaluation
 
 `evaluate_triad.py` evaluates 15 queries under deterministic `MOCK_LLM` scoring: one query covers each required knowledge-base topic and three are deliberately out of scope. It reports context relevance, groundedness, answer relevance, every per-query score, and metric averages.
+
+## Task 14 MCP
+
+`mcp_server.py` exposes `lookup_loan_application` through FastMCP HTTP transport at `http://127.0.0.1:8001/mcp`. `mcp_client.py` is a separate client process that calls that endpoint.

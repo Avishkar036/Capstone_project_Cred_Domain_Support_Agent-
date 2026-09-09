@@ -19,3 +19,9 @@
 {"trace_id": "6f6f6656-74ca-481e-9aea-893c6e52392d", "method": "POST", "path": "/add-document", "request_text": "{\"filename\":\"bad.txt\",\"content\":\"text\"}", "status_code": 422, "elapsed_ms": 3.83}
 {"trace_id": "1f1cf3e6-6c9e-43ce-91c6-5ca08ea01317", "method": "POST", "path": "/ask", "request_text": "Check LA-0001 status", "status_code": 200, "elapsed_ms": 3.331}
 {"trace_id": "5be03b41-14b9-4ed9-9987-0826e3a6d65b", "method": "GET", "path": "/openapi.json", "request_text": "", "status_code": 200, "elapsed_ms": 7.523}
+{"trace_id": "6b80de18-59d6-49aa-8108-d0f05bc18572", "method": "POST", "path": "/add-document", "request_text": "{\"filename\":\"bad.txt\",\"content\":\"text\"}", "status_code": 422, "elapsed_ms": 4.021}
+{"trace_id": "fb684122-11c0-4130-95d4-7d16c91587c0", "method": "POST", "path": "/ask", "request_text": "Check LA-0001 status", "status_code": 200, "elapsed_ms": 3.135}
+{"trace_id": "b3e28bfe-c75b-4e45-88ad-4e522e6c43d3", "method": "GET", "path": "/openapi.json", "request_text": "", "status_code": 200, "elapsed_ms": 5.793}
+{"trace_id": "8b30d967-ba74-46a4-82c1-84e35f9250bf", "method": "POST", "path": "/add-document", "request_text": "{\"filename\":\"bad.txt\",\"content\":\"text\"}", "status_code": 422, "elapsed_ms": 1.491}
+{"trace_id": "329f495c-1884-4048-aad6-bdd223fe4292", "method": "POST", "path": "/ask", "request_text": "Check LA-0001 status", "status_code": 200, "elapsed_ms": 1.377}
+{"trace_id": "6aeb25f7-140d-4d28-80e8-f2e2c7375fc6", "method": "GET", "path": "/openapi.json", "request_text": "", "status_code": 200, "elapsed_ms": 8.4}
