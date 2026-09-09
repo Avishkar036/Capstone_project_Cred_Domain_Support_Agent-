@@ -72,6 +72,8 @@ Both strategies achieved mean Precision@3 = 0.333 and mean Recall@3 = 1.000 on t
 
 `check_loan_application_status(record_id)` returns the application status, loan amount, and an escalation score. The formula is `0.6 × fraud_flag + 0.4 × (days_since_created / 30)`, with escalation recommended at scores of 0.65 or higher.
 
+The generated `days_since_created` distribution has an 80th-percentile value of 20 days. The 0.65 threshold therefore requires either a fraud flag plus at least 3.75 days of age, or a very old unflagged record; this makes escalation more selective than a bare fraud boolean while still prioritizing flagged records.
+
 ## Task 7 agent graph
 
 The LangGraph agent has four nodes: `classify`, `rag`, `status`, and `format`. A conditional edge routes loan record IDs such as `LA-0001` to the status tool and routes policy questions to the RAG tool.
@@ -98,7 +100,7 @@ The API middleware appends one JSON-Lines entry per request with a trace ID, sta
 
 ## Task 13 RAG-triad evaluation
 
-`evaluate_triad.py` evaluates 15 queries under deterministic `MOCK_LLM` scoring: one query covers each required knowledge-base topic and three are deliberately out of scope. It reports context relevance, groundedness, answer relevance, every per-query score, and metric averages.
+`evaluate_triad.py` evaluates 15 queries under deterministic `MOCK_LLM` scoring: one query covers each required knowledge-base topic and three are deliberately out of scope. Its declared judge prompt asks for context relevance, groundedness, and answer relevance as JSON scores, and the script reports every per-query score plus metric averages.
 
 ## Task 14 MCP
 
@@ -106,11 +108,11 @@ The API middleware appends one JSON-Lines entry per request with a trace ID, sta
 
 ## Task 15 SQLite checkpointing
 
-`checkpoint_demo.py` uses `SqliteSaver` with thread ID `task15-demo-thread`. It pauses before `node_c`, then resumes the same thread and completes from the checkpoint containing `node_a` and `node_b`.
+`checkpoint_demo.py` uses `SqliteSaver` with thread ID `task15-demo-thread` across four nodes. It pauses before `node_c`, then resumes the same thread and completes `node_c` and `node_d` from the checkpoint containing `node_a` and `node_b`.
 
 ## Task 16 resilience
 
-`resilience.py` uses four retry attempts with exponential backoff (0.01-second initial interval, 0.05-second cap, zero jitter for deterministic tests), a 0.05-second per-node timeout, and a 0.2-second global timeout. Its demos show transient recovery plus clean node and global timeout failures.
+`resilience.py` uses four retry attempts with exponential backoff (0.01-second initial interval, 0.05-second cap, zero jitter for deterministic tests), a 0.05-second per-node timeout, and a 0.2-second global timeout. Its demos show transient recovery, a per-node timeout, and global cancellation of a multi-node sequence.
 
 ## Implementation overview and design rationale
 

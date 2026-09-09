@@ -21,14 +21,19 @@ def build_checkpoint_graph(checkpointer):
     def node_c(state: CheckpointState) -> CheckpointState:
         return {"completed": state.get("completed", []) + ["node_c"]}
 
+    def node_d(state: CheckpointState) -> CheckpointState:
+        return {"completed": state.get("completed", []) + ["node_d"]}
+
     graph = StateGraph(CheckpointState)
     graph.add_node("node_a", node_a)
     graph.add_node("node_b", node_b)
     graph.add_node("node_c", node_c)
+    graph.add_node("node_d", node_d)
     graph.add_edge(START, "node_a")
     graph.add_edge("node_a", "node_b")
     graph.add_edge("node_b", "node_c")
-    graph.add_edge("node_c", END)
+    graph.add_edge("node_c", "node_d")
+    graph.add_edge("node_d", END)
     return graph.compile(checkpointer=checkpointer, interrupt_before=["node_c"])
 
 

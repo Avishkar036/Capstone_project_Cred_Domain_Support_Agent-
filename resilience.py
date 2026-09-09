@@ -50,6 +50,22 @@ async def run_with_timeouts(
     return await asyncio.wait_for(run_node(), timeout=global_timeout)
 
 
+async def run_graph_with_global_timeout(
+    nodes: list[Callable[[], Awaitable[T]]],
+    *,
+    node_timeout: float = NODE_TIMEOUT_SECONDS,
+    global_timeout: float = GLOBAL_TIMEOUT_SECONDS,
+) -> list[T]:
+    """Run a complete node sequence under one global timeout."""
+    async def run_graph() -> list[T]:
+        results = []
+        for node in nodes:
+            results.append(await asyncio.wait_for(node(), timeout=node_timeout))
+        return results
+
+    return await asyncio.wait_for(run_graph(), timeout=global_timeout)
+
+
 async def transient_demo() -> tuple[str, int]:
     """Fail twice, then succeed through the configured retry policy."""
     attempts = 0
@@ -72,10 +88,17 @@ async def node_timeout_demo() -> None:
 
 
 async def global_timeout_demo() -> None:
-    async def long_run() -> None:
-        await asyncio.sleep(0.2)
+    async def first_node() -> str:
+        await asyncio.sleep(0.01)
+        return "first complete"
 
-    await run_with_timeouts(long_run, node_timeout=1.0, global_timeout=0.01)
+    async def long_second_node() -> str:
+        await asyncio.sleep(0.2)
+        return "never reached"
+
+    await run_graph_with_global_timeout(
+        [first_node, long_second_node], node_timeout=1.0, global_timeout=0.05
+    )
 
 
 if __name__ == "__main__":

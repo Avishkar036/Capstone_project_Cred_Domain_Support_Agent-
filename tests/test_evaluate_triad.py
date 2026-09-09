@@ -2,7 +2,7 @@
 
 import unittest
 
-from evaluate_triad import QUERIES, averages, mock_llm_judge
+from evaluate_triad import MOCK_LLM_JUDGE_PROMPT, QUERIES, averages, mock_llm_judge
 
 
 class TriadEvaluationTests(unittest.TestCase):
@@ -20,6 +20,12 @@ class TriadEvaluationTests(unittest.TestCase):
     def test_averages(self) -> None:
         rows = [{"context_relevance": 0.5, "groundedness": 1.0, "answer_relevance": 0.0}]
         self.assertEqual(averages(rows), {"context_relevance": 0.5, "groundedness": 1.0, "answer_relevance": 0.0})
+
+    def test_mock_llm_prompt_is_declared(self) -> None:
+        self.assertIn("MOCK_LLM", MOCK_LLM_JUDGE_PROMPT)
+        self.assertIn("context_relevance", MOCK_LLM_JUDGE_PROMPT)
+        self.assertIn("groundedness", MOCK_LLM_JUDGE_PROMPT)
+        self.assertIn("answer_relevance", MOCK_LLM_JUDGE_PROMPT)
 
 
 if __name__ == "__main__":

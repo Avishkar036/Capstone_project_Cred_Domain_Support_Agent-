@@ -35,6 +35,14 @@ QUERIES = (
     EvaluationQuery("Can you diagnose my computer's battery failure?", None),
 )
 
+MOCK_LLM_JUDGE_PROMPT = """You are a deterministic RAG evaluator running in MOCK_LLM mode.
+Score the supplied query, retrieved context, and answer from 0.0 to 1.0 for:
+1) context_relevance: does the context address the query?
+2) groundedness: is the answer supported only by the context?
+3) answer_relevance: does the answer address the query or correctly refuse an out-of-scope query?
+Return JSON with exactly those three numeric fields. Do not invent facts or call an external model.
+"""
+
 
 def mock_llm_judge(query: EvaluationQuery, retrieved: list[dict], answer: str) -> dict[str, float]:
     """Score the triad deterministically as a local MOCK_LLM judge."""

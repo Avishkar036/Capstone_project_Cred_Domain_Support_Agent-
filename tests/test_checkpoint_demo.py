@@ -12,7 +12,7 @@ class CheckpointDemoTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             paused, resumed = run_checkpoint_demo(str(Path(directory) / "checkpoints.sqlite"))
         self.assertEqual(paused["completed"], ["node_a", "node_b"])
-        self.assertEqual(resumed["completed"], ["node_a", "node_b", "node_c"])
+        self.assertEqual(resumed["completed"], ["node_a", "node_b", "node_c", "node_d"])
 
 
 if __name__ == "__main__":
