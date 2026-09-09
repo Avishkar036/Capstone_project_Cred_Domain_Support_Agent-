@@ -49,3 +49,7 @@ The API middleware appends one JSON-Lines entry per request with a trace ID, sta
 ## Task 15 SQLite checkpointing
 
 `checkpoint_demo.py` uses `SqliteSaver` with thread ID `task15-demo-thread`. It pauses before `node_c`, then resumes the same thread and completes from the checkpoint containing `node_a` and `node_b`.
+
+## Task 16 resilience
+
+`resilience.py` uses four retry attempts with exponential backoff (0.01-second initial interval, 0.05-second cap, zero jitter for deterministic tests), a 0.05-second per-node timeout, and a 0.2-second global timeout. Its demos show transient recovery plus clean node and global timeout failures.
