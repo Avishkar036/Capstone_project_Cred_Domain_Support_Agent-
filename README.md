@@ -25,3 +25,7 @@ The LangGraph agent has four nodes: `classify`, `rag`, `status`, and `format`. A
 ## Task 9 structured output
 
 `response_schema.py` declares and validates the required `route`, `answer`, and `details` fields. The graph validates every response in its final formatting node before returning it.
+
+## Task 10 guardrails
+
+Input text is checked for instruction-override phrases and fixed-format PAN, Aadhaar, and account values are masked before model use. RAG output is refused when its top similarity is below the calibrated 0.3663 threshold.

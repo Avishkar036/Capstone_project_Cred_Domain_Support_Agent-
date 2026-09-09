@@ -8,6 +8,7 @@ from langgraph.graph import END, START, StateGraph
 from loan_tools import check_loan_application_status
 from rag_query import grounded_answer
 from response_schema import validate_response
+from guardrails import check_grounded_output, guard_input
 
 
 class AgentState(TypedDict, total=False):
@@ -19,7 +20,8 @@ class AgentState(TypedDict, total=False):
 
 def classify_query(state: AgentState) -> AgentState:
     """Classify record-ID requests as status queries and all others as policy."""
-    query = state["query"]
+    query = guard_input(state["query"])
+    state["query"] = query
     state["route"] = "status" if re.search(r"\bLA-\d{4}\b", query, re.IGNORECASE) else "rag"
     return state
 
@@ -30,7 +32,7 @@ def route_query(state: AgentState) -> str:
 
 
 def answer_with_rag(state: AgentState) -> AgentState:
-    state["result"] = grounded_answer(state["query"])
+    state["result"] = check_grounded_output(grounded_answer(state["query"]))
     return state
 
 
