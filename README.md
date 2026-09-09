@@ -37,3 +37,7 @@ Input text is checked for instruction-override phrases and fixed-format PAN, Aad
 ## Task 12 structured logging
 
 The API middleware appends one JSON-Lines entry per request with a trace ID, status code, and elapsed milliseconds. Request text is passed through the PII masker before it is written to `requests.jsonl`.
+
+## Task 13 RAG-triad evaluation
+
+`evaluate_triad.py` evaluates 15 queries under deterministic `MOCK_LLM` scoring: one query covers each required knowledge-base topic and three are deliberately out of scope. It reports context relevance, groundedness, answer relevance, every per-query score, and metric averages.

@@ -16,3 +16,6 @@
 {"trace_id": "9d7ddf62-3460-4775-88ad-b6c0d88851eb", "method": "POST", "path": "/ask", "request_text": "PAN [PAN-MASKED] account [ACCOUNT-MASKED]", "status_code": 422, "elapsed_ms": 10317.622}
 {"trace_id": "18a08b0c-ca4e-4a11-9431-0eb4906df2b3", "method": "GET", "path": "/ask", "request_text": "", "status_code": 405, "elapsed_ms": 0.401}
 {"trace_id": "84f786fb-5730-4348-81ba-6cb67fe9ee7b", "method": "GET", "path": "/favicon.ico", "request_text": "", "status_code": 404, "elapsed_ms": 0.394}
+{"trace_id": "6f6f6656-74ca-481e-9aea-893c6e52392d", "method": "POST", "path": "/add-document", "request_text": "{\"filename\":\"bad.txt\",\"content\":\"text\"}", "status_code": 422, "elapsed_ms": 3.83}
+{"trace_id": "1f1cf3e6-6c9e-43ce-91c6-5ca08ea01317", "method": "POST", "path": "/ask", "request_text": "Check LA-0001 status", "status_code": 200, "elapsed_ms": 3.331}
+{"trace_id": "5be03b41-14b9-4ed9-9987-0826e3a6d65b", "method": "GET", "path": "/openapi.json", "request_text": "", "status_code": 200, "elapsed_ms": 7.523}
