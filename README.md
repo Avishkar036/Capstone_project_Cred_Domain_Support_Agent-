@@ -21,3 +21,7 @@ The LangGraph agent has four nodes: `classify`, `rag`, `status`, and `format`. A
 ## Task 8 persisted memory
 
 `ConversationMemory` stores ordered user and assistant messages in a JSON file, reloads them for a later turn, and supports an explicit reset that starts a fresh conversation with an empty history.
+
+## Task 9 structured output
+
+`response_schema.py` declares and validates the required `route`, `answer`, and `details` fields. The graph validates every response in its final formatting node before returning it.

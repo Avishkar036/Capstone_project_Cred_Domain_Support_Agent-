@@ -7,6 +7,7 @@ from langgraph.graph import END, START, StateGraph
 
 from loan_tools import check_loan_application_status
 from rag_query import grounded_answer
+from response_schema import validate_response
 
 
 class AgentState(TypedDict, total=False):
@@ -51,7 +52,9 @@ def format_response(state: AgentState) -> AgentState:
         )
     else:
         answer = result["answer"]
-    state["response"] = {"route": state["route"], "answer": answer, "details": result}
+    state["response"] = validate_response(
+        {"route": state["route"], "answer": answer, "details": result}
+    )
     return state
 
 
