@@ -45,3 +45,7 @@ The API middleware appends one JSON-Lines entry per request with a trace ID, sta
 ## Task 14 MCP
 
 `mcp_server.py` exposes `lookup_loan_application` through FastMCP HTTP transport at `http://127.0.0.1:8001/mcp`. `mcp_client.py` is a separate client process that calls that endpoint.
+
+## Task 15 SQLite checkpointing
+
+`checkpoint_demo.py` uses `SqliteSaver` with thread ID `task15-demo-thread`. It pauses before `node_c`, then resumes the same thread and completes from the checkpoint containing `node_a` and `node_b`.
