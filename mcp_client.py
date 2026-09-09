@@ -13,5 +13,6 @@ async def lookup(record_id: str) -> object:
 
 
 if __name__ == "__main__":
-    record_id = sys.argv[1] if len(sys.argv) > 1 else "LA-0001"
-    print(asyncio.run(lookup(record_id)))
+    record_ids = sys.argv[1:] or ["LA-0001", "LA-0002"]
+    for record_id in record_ids:
+        print(record_id, asyncio.run(lookup(record_id)))
