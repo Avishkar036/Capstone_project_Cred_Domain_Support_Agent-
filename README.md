@@ -9,3 +9,7 @@ Queries below 0.3663 return an explicit “I don't know based on the available p
 ## Task 5 evaluation
 
 `evaluate_rag.py` evaluates the same five in-scope queries for both chunking strategies at the document level. Retrieved chunks are deduplicated by parent document before calculating Precision@3 and Recall@3.
+
+## Task 6 escalation score
+
+`check_loan_application_status(record_id)` returns the application status, loan amount, and an escalation score. The formula is `0.6 × fraud_flag + 0.4 × (days_since_created / 30)`, with escalation recommended at scores of 0.65 or higher.
