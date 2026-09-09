@@ -29,3 +29,11 @@ The LangGraph agent has four nodes: `classify`, `rag`, `status`, and `format`. A
 ## Task 10 guardrails
 
 Input text is checked for instruction-override phrases and fixed-format PAN, Aadhaar, and account values are masked before model use. RAG output is refused when its top similarity is below the calibrated 0.3663 threshold.
+
+## Task 11 FastAPI
+
+`api.py` exposes `POST /ask` for agent requests and `POST /add-document` for adding a Markdown knowledge-base document. Both endpoints use Pydantic request and response models.
+
+## Task 12 structured logging
+
+The API middleware appends one JSON-Lines entry per request with a trace ID, status code, and elapsed milliseconds. Request text is passed through the PII masker before it is written to `requests.jsonl`.

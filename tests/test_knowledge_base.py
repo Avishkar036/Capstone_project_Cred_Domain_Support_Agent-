@@ -24,10 +24,8 @@ REQUIRED_TOPICS = {
 
 class KnowledgeBaseTests(unittest.TestCase):
     def test_all_required_documents_exist(self) -> None:
-        self.assertEqual(
-            REQUIRED_TOPICS,
-            {path.name for path in KNOWLEDGE_BASE.glob("*.md")},
-        )
+        available = {path.name for path in KNOWLEDGE_BASE.glob("*.md")}
+        self.assertTrue(REQUIRED_TOPICS.issubset(available))
 
     def test_each_document_has_two_to_five_sentences(self) -> None:
         for filename in REQUIRED_TOPICS:

@@ -7,7 +7,7 @@ from rag_index import build_chunks, fixed_size_chunks, load_documents, sentence_
 
 class RagIndexTests(unittest.TestCase):
     def test_loads_all_knowledge_base_documents(self) -> None:
-        self.assertEqual(len(load_documents()), 12)
+        self.assertGreaterEqual(len(load_documents()), 12)
 
     def test_fixed_chunks_overlap_and_sentence_chunks(self) -> None:
         text = "One two three four five six seven eight nine ten eleven twelve. Next sentence is here."
